@@ -1,13 +1,15 @@
-<?php 
-    var_dump($_SERVER['REQUEST_METHOD']);
+<?php
+var_dump($_SERVER['REQUEST_METHOD']);
+// var_dump($_SERVER);
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        var_dump($_POST);
-        // Kita jalankan proses login yang melibatkan database
+// Kalo requestnya POST, maka jalanin ini, skip si tampilan HTML
+// Anggap aja buat switch ke backend
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Kita jalankan proses login yang melibatkan database
 
-        // Jika berhasil login, maka arahkan ke dashboard
-        header('Location: /dashboard.php');
-    }
+    // Jika berhasil login, maka arahkan ke dashboard
+    header('Location: /dashboard.php');
+}
 ?>
 
 <!doctype html>

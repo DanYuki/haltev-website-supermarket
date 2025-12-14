@@ -1,14 +1,11 @@
 <?php
-var_dump($_SERVER['REQUEST_METHOD']);
-// var_dump($_SERVER);
+require_once __DIR__ . "/helper.php";
 
 // Kalo requestnya POST, maka jalanin ini, skip si tampilan HTML
 // Anggap aja buat switch ke backend
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Kita jalankan proses register yang melibatkan database
-
-    // Jika berhasil login, maka arahkan ke dashboard
-    header('Location: /dashboard.php');
+    // Kita jalankan proses login yang melibatkan database
+    proses_register($_POST['username'], $_POST['password'], $_POST['nama']);
 }
 ?>
 
@@ -16,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>Register</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -31,24 +28,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         crossorigin="anonymous" />
 </head>
 
-<body>
+<body class="bg-body-tertiary">
     <header>
         <!-- place navbar here -->
     </header>
 
-    <main class="p-5">
+    <main class="p-5 container w-50 border mt-5 bg-white rounded-3">
         <h1>Register</h1>
         <form action="#" method="post">
             <div class="mb-3">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control">
             </div>
 
             <div class="mb-3">
-                <label for="username">Password</label>
-                <input type="password" name="password" id="password">
+                <label for="username" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
             </div>
+
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" name="nama" id="nama" class="form-control">
+            </div>
+
             <button type="submit" class="btn btn-primary">Register</button>
+            <p class="mt-3">Sudah punya akun? <a href="./login.php">Login</a></p>
         </form>
     </main>
 

@@ -1,5 +1,7 @@
 <?php 
 include 'config.php';
+require_once __DIR__ . "/helper.php";
+authenticate();
 
 $sql = "SELECT p.nama_produk, p.harga, t.qty, (p.harga * t.qty) AS Total FROM produk p INNER JOIN transaksi t ON p.id_produk = t.id_produk";
 $produk = $conn->query($sql)->fetch_all(MYSQLI_ASSOC);

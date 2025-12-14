@@ -52,7 +52,7 @@ function proses_register(string $username, string $password, string $nama)
 
         // Daftarkan user baru ke dalam database
         $stmt = $conn->prepare("INSERT INTO user (username, password, nama) VALUES (?, ?, ?)");
-        $stmt->execute([$username, $password, $nama]);
+        $stmt->execute([$username, $hashed_password, $nama]);
     } catch (Exception $e) {
         // Kembalikan user ke halaman register jika proses registrasi gagal dengan pesan error
         $_SESSION['error'] = $e->getMessage();

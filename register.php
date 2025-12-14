@@ -1,13 +1,11 @@
 <?php
-// var_dump($_SERVER);
+require_once __DIR__ . "/helper.php";
 
 // Kalo requestnya POST, maka jalanin ini, skip si tampilan HTML
 // Anggap aja buat switch ke backend
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Kita jalankan proses login yang melibatkan database
-
-    // Jika berhasil login, maka arahkan ke dashboard
-    header('Location: /dashboard.php');
+    proses_register($_POST['username'], $_POST['password'], $_POST['nama']);
 }
 ?>
 

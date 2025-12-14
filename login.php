@@ -1,13 +1,11 @@
 <?php
-// var_dump($_SERVER);
+require_once './helper.php';
 
 // Kalo requestnya POST, maka jalanin ini, skip si tampilan HTML
 // Anggap aja buat switch ke backend
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Kita jalankan proses login yang melibatkan database
-
-    // Jika berhasil login, maka arahkan ke dashboard
-    header('Location: /dashboard.php');
+    proses_login($_POST['username'], $_POST['password']);
 }
 ?>
 
@@ -37,6 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <main class="p-5 container w-50 border mt-5 bg-white rounded-3">
         <h1>Login</h1>
+        <!-- Jika terdapat error, maka tampilkan alert -->
+        <?php if (isset($_SESSION['error'])): ?>
+            <p class="alert alert-danger"><?= $_SESSION['error'] ?></p>
+        <?php
+            unset($_SESSION['error']);
+        endif; ?>
         <form action="#" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>

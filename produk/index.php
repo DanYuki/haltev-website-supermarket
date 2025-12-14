@@ -40,3 +40,8 @@ $produk = $conn->query("SELECT * FROM produk")->fetch_all(MYSQLI_ASSOC);
         </tbody>
     </table>
 </div>
+
+<?php 
+
+// require_once 'footer.php'
+?>

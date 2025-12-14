@@ -1,14 +1,11 @@
 <?php
-var_dump($_SERVER['REQUEST_METHOD']);
-// var_dump($_SERVER);
+require_once __DIR__ . "/helper.php";
 
 // Kalo requestnya POST, maka jalanin ini, skip si tampilan HTML
 // Anggap aja buat switch ke backend
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Kita jalankan proses register yang melibatkan database
-
-    // Jika berhasil login, maka arahkan ke dashboard
-    header('Location: /dashboard.php');
+    // Kita jalankan proses login yang melibatkan database
+    proses_register($_POST['username'], $_POST['password'], $_POST['nama']);
 }
 ?>
 
@@ -31,25 +28,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         crossorigin="anonymous" />
 </head>
 
-<body>
+<body class="bg-body-tertiary">
     <header>
         <!-- place navbar here -->
     </header>
 
     <main class="p-5">
-        <h1>Register</h1>
-        <form action="#" method="post">
-            <div class="mb-3">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
-            </div>
+        <div class="container w-50 border p-5 rounded-3 bg-white">
+            <h1>Register</h1>
+            <?php if (isset($_SESSION['error'])): ?>
+                <p class="alert alert-danger"><?= $_SESSION['error']; ?></p>
+            <?php
+                unset($_SESSION['error']);
+            endif; ?>
+            <form action="#" method="post">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" required>
+                </div>
 
-            <div class="mb-3">
-                <label for="username">Password</label>
-                <input type="password" name="password" id="password">
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama</label>
+                    <input type="text" name="nama" id="nama" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
     </main>
 
     <footer>

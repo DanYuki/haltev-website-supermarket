@@ -1,6 +1,8 @@
 <!-- Akan kita gunakan untuk koneksi ke database -->
 
 <?php
+$app_url = "http://localhost/supermarket";
+
 $servername = "localhost";
 $username = "root";
 $password = "root";

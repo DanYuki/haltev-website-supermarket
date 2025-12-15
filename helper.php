@@ -28,9 +28,10 @@ function proses_login(string $username, string $password) {
     }
 
     // Jika lolos semuanya, maka lanjut ke dashboard
+    global $app_url;
     $_SESSION['loginState'] = true;
     $_SESSION['username'] = $user['username'];
-    header("Location: /dashboard.php");
+    header("Location: $app_url/dashboard.php");
     exit();
 }
 

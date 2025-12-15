@@ -12,6 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $conn->prepare("INSERT INTO transaksi (id_produk, qty) VALUES (?, ?)");
     $stmt->execute([$id_produk, $qty]);
 
+    // Ambil data barang yang lama, terutama stok sebelum dibeli
+    $data_produk = $conn->query("SELECT * FROM produk WHERE id_produk= $id_produk")->fetch_assoc();
+    $stok_baru = $data_produk['stok'] - $qty;
+    
+    // Update stok barang
+    $stmt = $conn->prepare("UPDATE produk SET stok=? WHERE id_produk = ?");
+    $stmt->execute([$stok_baru, $id_produk]);
+
     session_start();
     $_SESSION['success'] = "Transaksi berhasil ditambahkan!";
 
